@@ -1,25 +1,16 @@
 {
-  "name": "readyrecipe",
-  "version": "0.0.1",
-  "description": "Do a recipie readier",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SarahD/ReadyRecipe.git"
-  },
-  "author": "Sarah Dulaney",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/SarahD/ReadyRecipe/issues"
-  },
-  "homepage": "https://github.com/SarahD/ReadyRecipe#readme",
+  "name": "ready-recipe",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "axios": "^0.17.1",
     "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
