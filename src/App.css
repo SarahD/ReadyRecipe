@@ -28,6 +28,11 @@ h3 {
     color: #766049;
 }
 
+h4 {
+    font-weight: 600;
+    font-style: italic;
+}
+
 .show-grid {
     margin: .5em 0;
 }
@@ -35,6 +40,10 @@ h3 {
     color: #766049;
 }
 
+.recipe-stats {
+    text-align:center;
+    padding-bottom: .25em;
+}
 .badge {
     padding: 1em;
     border-radius: 2em;
@@ -42,15 +51,29 @@ h3 {
 }
 
 .recipe-result {
-    height: 170px;
+    height: 180px;
+    padding: 0;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.recipe-result .show-grid {
     border: 1px dashed #ddd;
     box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
-    padding: 0;
 }
-.recipe-result img {
+
+.recipe-result .col-xs-12 {
+    padding-left: 0;
+}
+
+.recipe-result .recipe-photo {
     margin: 0;
     padding: 0;
-    max-height: 165px;
+}
+.recipe-result .recipe-photo img {
+    margin: 0;
+    padding: 0;
+    max-height: 150px;
     max-width:100%;
 }
 
