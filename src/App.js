@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
-import {FormGroup, ControlLabel, HelpBlock, Checkbox, FormControl, Button, ButtonGroup, Radio, Grid, Col, Row} from 'react-bootstrap'
+import {FormGroup, ControlLabel, HelpBlock, FormControl, Button, ButtonGroup, Grid, Col, Row, Badge} from 'react-bootstrap'
 
 import logo from './logo.jpg';
 import './App.css';
@@ -181,6 +181,38 @@ class App extends Component {
           </Col>
         </Row>
 
+      </Grid>
+
+      <hr />
+
+      <Grid className="recipe-result">
+        <row className="show-grid">
+        <Col xs={12}>
+             <Col xs={4}>
+              <img src="https://cdn2.tmbi.com/TOH/Images/Photos/37/300x300/Flavorful-Chicken-Fajitas_exps12540_BOS3149327B02_08_5bC_RMS.jpg" alt="Chicken Fajitas" />
+            </Col>
+              <Col xs={6}>
+              <h4>Chicken Fajitas</h4>
+                <ul>
+                  <li>1/2lb of Chicken</li>
+                  <li>2 Peppers</li>
+                  <li>2 Onions</li>
+                  <li>10 Tortillas</li>
+                </ul>
+              </Col>
+
+              <Col xs={2}>
+                <Col xs={12}>
+                  <h4>Prep</h4>
+                  <Badge>30</Badge>
+                </Col>
+                <Col xs={12}>
+                  <h4>Cook</h4>
+                  <Badge>15</Badge>
+                </Col>
+              </Col>
+        </Col>
+        </row>
       </Grid>
     </div>
   )
