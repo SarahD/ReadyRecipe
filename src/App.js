@@ -62,8 +62,7 @@ class App extends Component {
           </FormControl>
         </FormGroup>
 
-        <p>When are you making this?</p>
-        
+        <p>When are you making this?</p>        
 
         <FieldGroup
           id="formControlsEmail"
@@ -91,15 +90,9 @@ class App extends Component {
           <Checkbox inline>3</Checkbox>
         </FormGroup>
         <FormGroup>
-          <Radio name="radioGroup" inline>
-            1
-          </Radio>{' '}
-          <Radio name="radioGroup" inline>
-            2
-          </Radio>{' '}
-          <Radio name="radioGroup" inline>
-            3
-          </Radio>
+          <Radio name="radioGroup" inline>1</Radio>{' '}
+          <Radio name="radioGroup" inline>2</Radio>{' '}
+          <Radio name="radioGroup" inline>3</Radio>
         </FormGroup>
 
         <FormGroup controlId="formControlsSelect">
