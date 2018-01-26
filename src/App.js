@@ -23,9 +23,15 @@ class App extends Component {
   handleChange = (tags) => {
     this.setState({ tags })
   }
+
+  selectChange = (event, selectname) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
   
   submit = (event) => {
-    console.log(this.state.tags)
+    console.log(this.state)
     event.preventDefault()
   }
 
@@ -61,7 +67,7 @@ class App extends Component {
 
           <FormGroup controlId="formControlsSelectMultiple1">
             <ControlLabel>Appliance</ControlLabel>
-            <FormControl componentClass="select" multiple>
+            <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple>
               <option value="select">Select (multiple)</option>
               <option value="microwave">Microwave</option>
               <option value="oven">Oven</option>
@@ -72,7 +78,7 @@ class App extends Component {
 
           <FormGroup controlId="formControlsSelectMultiple2">
             <ControlLabel>Meal Type</ControlLabel>
-            <FormControl componentClass="select" multiple>
+            <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple>
               <option value="select">Select (multiple)</option>
               <option value="Appetizer">Appetizer</option>
               <option value="Beverage">Beverage</option>
