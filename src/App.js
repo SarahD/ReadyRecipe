@@ -11,7 +11,8 @@ import {
   Col,
   Row,
   ButtonGroup,
-  Badge
+  Badge,
+  Glyphicon
 } from 'react-bootstrap'
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
@@ -29,7 +30,7 @@ const FieldGroup = ({id, label, help, ...props}) => (
   </FormGroup>
 )
 
-const Recipes = ({ stuff }) => (
+const Recipes = ({stuff}) => (
   <div>{stuff}</div>
 )
 
@@ -76,9 +77,9 @@ class App extends Component {
   }
 
   selectChange = (event, selectname) => {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({[event.target.name]: event.target.value})
   }
-  
+
   ready = (event) => {
     const ing = this.state.tags.sort()
     let newRecipes = null
@@ -92,7 +93,7 @@ class App extends Component {
     // console.log('newRecipes', newRecipes)
     // console.log('state', this.state)
 
-    this.setState({ recipeList: newRecipes })
+    this.setState({recipeList: newRecipes})
 
     event.preventDefault()
   }
@@ -108,103 +109,113 @@ class App extends Component {
             <h2>Hi Jenna!</h2>
             <form>
               <Row className="show-grid">
-              <h3>What recipe are we making?</h3>
-              <Col xs={6} md={6}>
-                <label className="control-label">Ingredients</label>
-                <TagsInput
-                  value={this.state.tags}
-                  onChange={this.handleChange}
-                  // inputValue={this.state.tag}
-                  onlyUnique
-                  addOnBlur
-                />
-                
-              </Col>
-              <Col xs={3} md={3}>
-                <FormGroup controlId="formControlsSelectMultiple">
-                  <ControlLabel>Appliance (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple>
-                    <option value="microwave">Microwave</option>
-                    <option value="oven">Oven</option>
-                    <option value="toaster">Toaster</option>
-                    <option value="toaster-oven">Toaster Oven</option>
-                  </FormControl>
-                </FormGroup>
-              </Col>
-              <Col xs={3} md={3}>
-                <FormGroup controlId="formControlsSelectMultiple">
-                  <ControlLabel>Meal Type (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple>
-                    <option value="Appetizer">Appetizer</option>
-                    <option value="Beverage">Beverage</option>
-                    <option value="Bread">Bread</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Casserole">Casserole</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Entree">Entree</option>
-                    <option value="Salad">Salad</option>
-                    <option value="Sandwich">Sandwich</option>
-                    <option value="Side-Dish">Side Dish</option>
-                    <option value="Soup">Soup</option>
-                    <option value="Snack">Snack</option>
-                  </FormControl>
-                </FormGroup>
-              </Col>
-              </Row>
-              <Row className="show-grid">
-              <Col xs={12}>
-                <h3>When are you making this?</h3>
-                <Col xs={4} md={4}>
-                  <FieldGroup
-                    id="formControlsText"
-                    type="text"
-                    label="Date"
-                    placeholder="12/12"
-                  />
-                </Col>
-                <Col xs={6} md={8}>
-                  <Col xs={4} md={8}>
-                    <FieldGroup
-                      id="formControlsText"
-                      type="text"
-                      label="Time"
-                      placeholder="6:00"
-                    />
-                  </Col>
-                  <Col xs={8} md={4} >
-                    <label className="control-label">&nbsp;</label>
-                    <ButtonGroup bsSize="small" style={{verticalAlign: 'baseline'}}>
-                      <Button>AM</Button>
-                      <Button>PM</Button>
-                      <Button>24HR</Button>
-                    </ButtonGroup>
-                  </Col>
-                </Col>
-              </Col>
-
-              </Row>
-              <Row className="show-grid">
-              <Col xs={12}>
-                <h3>Any Allergies?</h3>
-                <Col xs={4} md={3}>
-                  <FormGroup>
-                    <ControlLabel>Known Allergies</ControlLabel>
-                    <FormControl.Static>Tuna, Beans, Tomato</FormControl.Static>
-                  </FormGroup>
-                </Col>
-                <Col xs={8} md={9}>
-                  <label className="control-label">Additional Allergies</label>
+                <h3>What recipe are we making?</h3>
+                <Col xs={6} md={6}>
+                  <label className="control-label">Ingredients</label>
                   <TagsInput
-                    value={[]}
+                    value={this.state.tags}
                     onChange={this.handleChange}
+                    // inputValue={this.state.tag}
                     onlyUnique
                     addOnBlur
                   />
+
                 </Col>
-              </Col>
+                <Col xs={3} md={3}>
+                  <FormGroup controlId="formControlsSelectMultiple">
+                    <ControlLabel>Appliance (Multiple)</ControlLabel>
+                    <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple>
+                      <option value="microwave">Microwave</option>
+                      <option value="oven">Oven</option>
+                      <option value="toaster">Toaster</option>
+                      <option value="toaster-oven">Toaster Oven</option>
+                    </FormControl>
+                  </FormGroup>
+                </Col>
+                <Col xs={3} md={3}>
+                  <FormGroup controlId="formControlsSelectMultiple">
+                    <ControlLabel>Meal Type (Multiple)</ControlLabel>
+                    <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple>
+                      <option value="Appetizer">Appetizer</option>
+                      <option value="Beverage">Beverage</option>
+                      <option value="Bread">Bread</option>
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Casserole">Casserole</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Entree">Entree</option>
+                      <option value="Salad">Salad</option>
+                      <option value="Sandwich">Sandwich</option>
+                      <option value="Side-Dish">Side Dish</option>
+                      <option value="Soup">Soup</option>
+                      <option value="Snack">Snack</option>
+                    </FormControl>
+                  </FormGroup>
+                </Col>
               </Row>
               <Row className="show-grid">
-                <Col xs={10} />
+                <Col xs={12}>
+                  <h3>When are you making this?</h3>
+                  <Col xs={4} md={4}>
+                    <FieldGroup
+                      id="formControlsText"
+                      type="text"
+                      label="Date"
+                      placeholder="12/12"
+                    />
+                  </Col>
+                  <Col xs={6} md={8}>
+                    <Col xs={4} md={8}>
+                      <FieldGroup
+                        id="formControlsText"
+                        type="text"
+                        label="Time"
+                        placeholder="6:00"
+                      />
+                    </Col>
+                    <Col xs={8} md={4}>
+                      <label className="control-label">&nbsp;</label>
+                      <ButtonGroup bsSize="small" style={{verticalAlign: 'baseline'}}>
+                        <Button>AM</Button>
+                        <Button>PM</Button>
+                        <Button>24HR</Button>
+                      </ButtonGroup>
+                    </Col>
+                  </Col>
+                </Col>
+              </Row>
+
+              <Row className="show-grid">
+                <Col xs={12}>
+                  <h3>Are you having guests?</h3>
+                  <Button bsSize="large" bsStyle="guest"><Glyphicon glyph="user"/> Joe</Button>
+                  <Button bsSize="large" bsStyle="guest"><Glyphicon glyph="user"/> Tammy</Button>
+                  <Button bsSize="large" bsStyle="guest"><Glyphicon glyph="user"/> Todd</Button>
+                  <Button bsSize="large" bsStyle="guest"><Glyphicon glyph="user"/> Work</Button>
+                </Col>
+              </Row>
+
+              <Row className="show-grid">
+                <Col xs={12}>
+                  <h3>Any Allergies?</h3>
+                  <Col xs={4} md={3}>
+                    <FormGroup>
+                      <ControlLabel>Known Allergies</ControlLabel>
+                      <FormControl.Static>Tuna, Beans, Tomato</FormControl.Static>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={8} md={9}>
+                    <label className="control-label">Additional Allergies</label>
+                    <TagsInput
+                      value={[]}
+                      onChange={this.handleChange}
+                      onlyUnique
+                      addOnBlur
+                    />
+                  </Col>
+                </Col>
+              </Row>
+              <Row className="show-grid">
+                <Col xs={10}/>
                 <Col xs={2}>
                   <Button type="submit" onClick={this.ready}>Ready!</Button>
                 </Col>
@@ -212,41 +223,43 @@ class App extends Component {
             </form>
           </Col>
 
-          <Recipes stuff={this.state.recipeList} />
+          <Recipes stuff={this.state.recipeList}/>
           {/* {(this.state.recipeList)} */}
         </Row>
       </Grid>
 
-      <hr />
+      <hr/>
 
       <Grid className="recipe-result">
-        <row className="show-grid">
-        <Col xs={12}>
-             <Col xs={4}>
-              <img src="https://cdn2.tmbi.com/TOH/Images/Photos/37/300x300/Flavorful-Chicken-Fajitas_exps12540_BOS3149327B02_08_5bC_RMS.jpg" alt="Chicken Fajitas" />
+        <Row className="show-grid">
+          <Col xs={12}>
+            <Col xs={4}>
+              <img
+                src="https://cdn2.tmbi.com/TOH/Images/Photos/37/300x300/Flavorful-Chicken-Fajitas_exps12540_BOS3149327B02_08_5bC_RMS.jpg"
+                alt="Chicken Fajitas"/>
             </Col>
-              <Col xs={6}>
+            <Col xs={6}>
               <h4>Chicken Fajitas</h4>
-                <ul>
-                  <li>1/2lb of Chicken</li>
-                  <li>2 Peppers</li>
-                  <li>2 Onions</li>
-                  <li>10 Tortillas</li>
-                </ul>
-              </Col>
+              <ul>
+                <li>1/2lb of Chicken</li>
+                <li>2 Peppers</li>
+                <li>2 Onions</li>
+                <li>10 Tortillas</li>
+              </ul>
+            </Col>
 
-              <Col xs={2}>
-                <Col xs={12}>
-                  <h4>Prep</h4>
-                  <Badge>30</Badge>
-                </Col>
-                <Col xs={12}>
-                  <h4>Cook</h4>
-                  <Badge>15</Badge>
-                </Col>
+            <Col xs={2}>
+              <Col xs={12}>
+                <h4>Prep</h4>
+                <Badge>30</Badge>
               </Col>
-        </Col>
-        </row>
+              <Col xs={12}>
+                <h4>Cook</h4>
+                <Badge>15</Badge>
+              </Col>
+            </Col>
+          </Col>
+        </Row>
       </Grid>
     </div>
   )

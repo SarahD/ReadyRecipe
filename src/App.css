@@ -28,6 +28,9 @@ h3 {
     color: #766049;
 }
 
+.show-grid {
+    margin: .5em 0;
+}
 .control-label {
     color: #766049;
 }
@@ -49,4 +52,25 @@ h3 {
     padding: 0;
     max-height: 165px;
     max-width:100%;
+}
+
+.btn-guest {
+    background-color: #89094d;
+    color: #fff;
+    margin-right: .5em;
+}
+
+.btn-guest:focus {
+    color: #fff;
+}
+
+.btn-guest:hover {
+    color: #fff;
+    -webkit-box-shadow: 3px 3px 5px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 2px #ccc;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         3px 3px 5px 2px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.btn-guest .glyphicon-user {
+    margin-right: .25em;
 }
