@@ -16,7 +16,6 @@ import {
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 
-
 import recipes from './recipes'
 import logo from './logo.jpg';
 import './App.css';
@@ -28,9 +27,43 @@ const FieldGroup = ({id, label, help, ...props}) => (
     {help && <HelpBlock>{help}</HelpBlock>}
   </FormGroup>
 )
+  
 
-const Recipes = ({ stuff }) => (
-  <div>{stuff}</div>
+const Recipes = ({ foods }) => (
+  <div>
+    {foods.map((food, index) => (
+      <Grid className="recipe-result">
+        <Row className="show-grid" >
+          <Col xs={12}>
+            <Col xs={4}>
+              <img src={recipes[food].image} alt="Chicken Fajitas" />
+            </Col>
+            <Col xs={6}>
+              <h4>{recipes[food].name}</h4>
+              <ul>
+                <li>1/2lb of Chicken</li>
+                <li>2 Peppers</li>
+                <li>2 Onions</li>
+                <li>10 Tortillas</li>
+              </ul>
+            </Col>
+
+            <Col xs={2}>
+              <Col xs={12}>
+                <h4>Prep</h4>
+                <Badge>{recipes[food].prep}</Badge>
+              </Col>
+              <Col xs={12}>
+                <h4>Cook</h4>
+                <Badge>{recipes[food].cook}</Badge>
+              </Col>
+            </Col>
+          </Col>
+        </Row >
+      </Grid>
+    ))}
+  </div>
+  
 )
 
 // var App = React.createClass({
@@ -123,7 +156,7 @@ class App extends Component {
               <Col xs={3} md={3}>
                 <FormGroup controlId="formControlsSelectMultiple">
                   <ControlLabel>Appliance (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple>
+                    <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple value={['oven']} >
                     <option value="microwave">Microwave</option>
                     <option value="oven">Oven</option>
                     <option value="toaster">Toaster</option>
@@ -134,7 +167,7 @@ class App extends Component {
               <Col xs={3} md={3}>
                 <FormGroup controlId="formControlsSelectMultiple">
                   <ControlLabel>Meal Type (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple>
+                    <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple value={['Appetizer', 'Beverage', 'Bread', 'Breakfast', 'Casserole', 'Dessert', 'Entree', 'Salad', 'Sandwich', 'Side', 'Soup', 'Snack']} >
                     <option value="Appetizer">Appetizer</option>
                     <option value="Beverage">Beverage</option>
                     <option value="Bread">Bread</option>
@@ -211,43 +244,14 @@ class App extends Component {
               </Row>
             </form>
           </Col>
-
-          <Recipes stuff={this.state.recipeList} />
-          {/* {(this.state.recipeList)} */}
         </Row>
       </Grid>
 
       <hr />
 
-      <Grid className="recipe-result">
-        <row className="show-grid">
-        <Col xs={12}>
-             <Col xs={4}>
-              <img src="https://cdn2.tmbi.com/TOH/Images/Photos/37/300x300/Flavorful-Chicken-Fajitas_exps12540_BOS3149327B02_08_5bC_RMS.jpg" alt="Chicken Fajitas" />
-            </Col>
-              <Col xs={6}>
-              <h4>Chicken Fajitas</h4>
-                <ul>
-                  <li>1/2lb of Chicken</li>
-                  <li>2 Peppers</li>
-                  <li>2 Onions</li>
-                  <li>10 Tortillas</li>
-                </ul>
-              </Col>
-
-              <Col xs={2}>
-                <Col xs={12}>
-                  <h4>Prep</h4>
-                  <Badge>30</Badge>
-                </Col>
-                <Col xs={12}>
-                  <h4>Cook</h4>
-                  <Badge>15</Badge>
-                </Col>
-              </Col>
-        </Col>
-        </row>
-      </Grid>
+      {this.state.recipeList.length > 0 && <Recipes foods={this.state.recipeList} />}
+      {/* {(this.state.recipeList)} */}
+      
     </div>
   )
 }
