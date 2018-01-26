@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
-import {FormGroup, ControlLabel, HelpBlock, Checkbox, FormControl, Button, Radio, Grid, Col, Row} from 'react-bootstrap'
+import {FormGroup, ControlLabel, HelpBlock, Checkbox, FormControl, Button, ButtonGroup, Radio, Grid, Col, Row} from 'react-bootstrap'
 
-import logo from './logo.svg';
+import logo from './logo.jpg';
 import './App.css';
 
 const FieldGroup = ({id, label, help, ...props}) => (
@@ -62,14 +62,14 @@ class App extends Component {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo"/>
-        <h1 className="App-title">Welcome to React</h1>
       </header>
       <Grid>
         <Row className="show-grid">
           <Col xs={12}>
             <h2>Hi Jenna!</h2>
-            <h3>What recipe are we making?</h3>
             <form>
+              <Row className="show-grid">
+              <h3>What recipe are we making?</h3>
               <Col xs={6} md={6}>
                 <label className="control-label">Ingredients</label>
                 <TagsInput
@@ -117,96 +117,71 @@ class App extends Component {
                   </FormControl>
                 </FormGroup>
               </Col>
-
-              <h3>When are you making this?</h3>
-              <Col xs={6} md={6}>
-                <FieldGroup
-                  id="formControlsText"
-                  type="text"
-                  label="Date"
-                  placeholder="12/12"
-                />
-              </Col>
-              <Col xs={6} md={6}>
-                <Col xs={4} md={8}>
+              </Row>
+              <Row className="show-grid">
+              <Col xs={12}>
+                <h3>When are you making this?</h3>
+                <Col xs={4} md={4}>
                   <FieldGroup
                     id="formControlsText"
                     type="text"
-                    label="Time"
-                    placeholder="6:00"
+                    label="Date"
+                    placeholder="12/12"
                   />
                 </Col>
-                <Col xs={8} md={4} style={{verticalAlign: 'bottom'}}>
-                  <Button>AM</Button>
-                  <Button>PM</Button>
-                  <Button>24HR</Button>
+                <Col xs={6} md={8}>
+                  <Col xs={4} md={8}>
+                    <FieldGroup
+                      id="formControlsText"
+                      type="text"
+                      label="Time"
+                      placeholder="6:00"
+                    />
+                  </Col>
+                  <Col xs={8} md={4} >
+                    <label className="control-label">&nbsp;</label>
+                    <ButtonGroup bsSize="small" style={{verticalAlign: 'baseline'}}>
+                      <Button>AM</Button>
+                      <Button>PM</Button>
+                      <Button>24HR</Button>
+                    </ButtonGroup>
+                  </Col>
                 </Col>
               </Col>
+
+              </Row>
+              <Row className="show-grid">
+              <Col xs={12}>
+                <h3>Any Allergies?</h3>
+                <Col xs={4} md={3}>
+                  <FormGroup>
+                    <ControlLabel>Known Allergies</ControlLabel>
+                    <FormControl.Static>Tuna, Beans, Tomato</FormControl.Static>
+                  </FormGroup>
+                </Col>
+                <Col xs={8} md={9}>
+                  <label className="control-label">Additional Allergies</label>
+                  <TagsInput
+                    value={this.state.tags}
+                    onChange={this.handleChange}
+                    // inputValue={this.state.tag}
+                    onlyUnique
+                    addOnBlur
+                  />
+                </Col>
+              </Col>
+              </Row>
+              <Row className="show-grid">
+                <Col xs={10} />
+                <Col xs={2}>
+                  <Button type="submit" onClick={this.submit}>Ready!</Button>
+                </Col>
+              </Row>
             </form>
           </Col>
         </Row>
+
       </Grid>
-      <form>
-
-        <FieldGroup
-          id="formControlsEmail"
-          type="email"
-          label="Email address"
-          placeholder="Enter email"
-        />
-        <FieldGroup id="formControlsPassword" label="Password" type="password"/>
-        <FieldGroup
-          id="formControlsFile"
-          type="file"
-          label="File"
-          help="Example block-level help text here."
-        />
-
-        <Checkbox checked readOnly>
-          Checkbox
-        </Checkbox>
-        <Radio checked readOnly>
-          Radio
-        </Radio>
-
-
-        <FormGroup>
-          <Checkbox inline>1</Checkbox> <Checkbox inline>2</Checkbox>{' '}
-          <Checkbox inline>3</Checkbox>
-        </FormGroup>
-        <FormGroup>
-          <Radio name="radioGroup" inline>1</Radio>{' '}
-          <Radio name="radioGroup" inline>2</Radio>{' '}
-          <Radio name="radioGroup" inline>3</Radio>
-        </FormGroup>
-
-        <FormGroup controlId="formControlsSelect">
-          <ControlLabel>Select</ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
-            <option value="select">select</option>
-            <option value="other">...</option>
-          </FormControl>
-        </FormGroup>
-        <FormGroup controlId="formControlsSelectMultiple3">
-          <ControlLabel>Multiple select</ControlLabel>
-          <FormControl componentClass="select" multiple>
-            <option value="select">select (multiple)</option>
-            <option value="other">...</option>
-          </FormControl>
-        </FormGroup>
-
-        <FormGroup controlId="formControlsTextarea">
-          <ControlLabel>Textarea</ControlLabel>
-          <FormControl componentClass="textarea" placeholder="textarea"/>
-        </FormGroup>
-
-        <FormGroup>
-          <ControlLabel>Static text</ControlLabel>
-          <FormControl.Static>email@example.com</FormControl.Static>
-        </FormGroup> */}
-
-        <Button type="submit" onClick={this.submit}>Submit</Button>
-      </form>
     </div>
   )
 }
