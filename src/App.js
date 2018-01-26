@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {FormGroup, ControlLabel, HelpBlock, Checkbox, FormControl, Button, Radio} from 'react-bootstrap'
+import { FormGroup, ControlLabel, HelpBlock, Checkbox, FormControl, Button, Radio } from 'react-bootstrap'
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
 
 import logo from './logo.svg';
 import './App.css';
@@ -13,6 +15,20 @@ const FieldGroup = ({id, label, help, ...props}) => (
 )
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = { tags: [] }
+  }
+
+  handleChange = (tags) => {
+    this.setState({ tags })
+  }
+  
+  submit = (event) => {
+    console.log(this.state.tags)
+    event.preventDefault()
+  }
+
   render = () => (
     <div>
       <header className="App-header">
@@ -27,12 +43,22 @@ class App extends Component {
         <h2>Hi Jenna!</h2>
         <p>What recipe are we making?</p>
         <form>
-          <FieldGroup
+          {/* <FieldGroup
             id="formControlsText"
             type="text"
             label="Ingredients"
             placeholder="Apples, pears, grapes..."
+          /> */}
+
+          <label className="control-label">Ingredients</label>
+          <TagsInput
+            value={this.state.tags}
+            onChange={this.handleChange}
+            // inputValue={this.state.tag}
+            onlyUnique
+            addOnBlur
           />
+
           <FormGroup controlId="formControlsSelectMultiple1">
             <ControlLabel>Appliance</ControlLabel>
             <FormControl componentClass="select" multiple>
@@ -63,7 +89,7 @@ class App extends Component {
             </FormControl>
           </FormGroup>
 
-          <p>When are you making this?</p>        
+          {/* <p>When are you making this?</p>        
 
           <FieldGroup
             id="formControlsEmail"
@@ -119,9 +145,9 @@ class App extends Component {
           <FormGroup>
             <ControlLabel>Static text</ControlLabel>
             <FormControl.Static>email@example.com</FormControl.Static>
-          </FormGroup>
+          </FormGroup> */}
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit" onClick={this.submit}>Submit</Button>
         </form>
       </div>
     </div>
