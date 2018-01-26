@@ -1,8 +1,23 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import isEqual from 'lodash/isEqual'
+import forEach from 'lodash/forEach'
+import {
+  FormGroup,
+  ControlLabel,
+  HelpBlock,
+  FormControl,
+  Button,
+  Grid,
+  Col,
+  Row,
+  ButtonGroup,
+  Badge
+} from 'react-bootstrap'
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
-import {FormGroup, ControlLabel, HelpBlock, FormControl, Button, ButtonGroup, Grid, Col, Row, Badge} from 'react-bootstrap'
 
+
+import recipes from './recipes'
 import logo from './logo.jpg';
 import './App.css';
 
@@ -12,6 +27,10 @@ const FieldGroup = ({id, label, help, ...props}) => (
     <FormControl {...props} />
     {help && <HelpBlock>{help}</HelpBlock>}
   </FormGroup>
+)
+
+const Recipes = ({ stuff }) => (
+  <div>{stuff}</div>
 )
 
 // var App = React.createClass({
@@ -46,15 +65,35 @@ const FieldGroup = ({id, label, help, ...props}) => (
 class App extends Component {
   constructor() {
     super()
-    this.state = {tags: []}
+    this.state = {
+      tags: ['tortillas', 'chicken', 'peppers', 'onions'],
+      recipeList: [],
+    }
   }
 
   handleChange = (tags) => {
     this.setState({tags})
   }
 
-  submit = (event) => {
-    console.log(this.state.tags)
+  selectChange = (event, selectname) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+  
+  ready = (event) => {
+    const ing = this.state.tags.sort()
+    let newRecipes = null
+
+    forEach(recipes.ingredientInput, function (value) {
+      if (isEqual(ing, value.ingredients.sort())) {
+        newRecipes = value.recipes;
+      }
+    })
+
+    // console.log('newRecipes', newRecipes)
+    // console.log('state', this.state)
+
+    this.setState({ recipeList: newRecipes })
+
     event.preventDefault()
   }
 
@@ -79,18 +118,12 @@ class App extends Component {
                   onlyUnique
                   addOnBlur
                 />
-
-                {/*<FieldGroup*/}
-                {/*id="formControlsText"*/}
-                {/*type="text"*/}
-                {/*label="Ingredients"*/}
-                {/*placeholder="Apples, pears, grapes..."*/}
-                {/*/>*/}
+                
               </Col>
               <Col xs={3} md={3}>
                 <FormGroup controlId="formControlsSelectMultiple">
                   <ControlLabel>Appliance (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" multiple>
+                  <FormControl componentClass="select" onChange={this.selectChange} name="appliance" multiple>
                     <option value="microwave">Microwave</option>
                     <option value="oven">Oven</option>
                     <option value="toaster">Toaster</option>
@@ -101,7 +134,7 @@ class App extends Component {
               <Col xs={3} md={3}>
                 <FormGroup controlId="formControlsSelectMultiple">
                   <ControlLabel>Meal Type (Multiple)</ControlLabel>
-                  <FormControl componentClass="select" multiple>
+                  <FormControl componentClass="select" onChange={this.selectChange} name="mealtype" multiple>
                     <option value="Appetizer">Appetizer</option>
                     <option value="Beverage">Beverage</option>
                     <option value="Bread">Bread</option>
@@ -162,9 +195,8 @@ class App extends Component {
                 <Col xs={8} md={9}>
                   <label className="control-label">Additional Allergies</label>
                   <TagsInput
-                    value={this.state.tags}
+                    value={[]}
                     onChange={this.handleChange}
-                    // inputValue={this.state.tag}
                     onlyUnique
                     addOnBlur
                   />
@@ -174,13 +206,15 @@ class App extends Component {
               <Row className="show-grid">
                 <Col xs={10} />
                 <Col xs={2}>
-                  <Button type="submit" onClick={this.submit}>Ready!</Button>
+                  <Button type="submit" onClick={this.ready}>Ready!</Button>
                 </Col>
               </Row>
             </form>
           </Col>
-        </Row>
 
+          <Recipes stuff={this.state.recipeList} />
+          {/* {(this.state.recipeList)} */}
+        </Row>
       </Grid>
 
       <hr />
