@@ -5,20 +5,19 @@ import {
   FormGroup,
   ControlLabel,
   HelpBlock,
-  Checkbox,
   FormControl,
   Button,
-  Radio,
   Grid,
   Col,
-  Row
+  Row,
+  ButtonGroup,
 } from 'react-bootstrap'
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css'
 
 import recipes from './recipes'
-import logo from './logo.svg'
-import './App.css'
+import logo from './logo.jpg';
+import './App.css';
 
 const FieldGroup = ({id, label, help, ...props}) => (
   <FormGroup controlId={id}>
@@ -26,6 +25,10 @@ const FieldGroup = ({id, label, help, ...props}) => (
     <FormControl {...props} />
     {help && <HelpBlock>{help}</HelpBlock>}
   </FormGroup>
+)
+
+const Recipes = ({ stuff }) => (
+  <div>{stuff}</div>
 )
 
 // var App = React.createClass({
@@ -74,7 +77,7 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
   
-  submit = (event) => {
+  ready = (event) => {
     const ing = this.state.tags.sort()
     let newRecipes = null
 
@@ -86,6 +89,9 @@ class App extends Component {
 
     // console.log('newRecipes', newRecipes)
     // console.log('state', this.state)
+
+    this.setState({ recipeList: newRecipes })
+
     event.preventDefault()
   }
 
@@ -93,14 +99,14 @@ class App extends Component {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo"/>
-        <h1 className="App-title">Welcome to React</h1>
       </header>
       <Grid>
         <Row className="show-grid">
           <Col xs={12}>
             <h2>Hi Jenna!</h2>
-            <h3>What recipe are we making?</h3>
             <form>
+              <Row className="show-grid">
+              <h3>What recipe are we making?</h3>
               <Col xs={6} md={6}>
                 <label className="control-label">Ingredients</label>
                 <TagsInput
@@ -142,37 +148,72 @@ class App extends Component {
                   </FormControl>
                 </FormGroup>
               </Col>
-
-              <h3>When are you making this?</h3>
-              <Col xs={6} md={6}>
-                <FieldGroup
-                  id="formControlsText"
-                  type="text"
-                  label="Date"
-                  placeholder="12/12"
-                />
-              </Col>
-              <Col xs={6} md={6}>
-                <Col xs={4} md={8}>
+              </Row>
+              <Row className="show-grid">
+              <Col xs={12}>
+                <h3>When are you making this?</h3>
+                <Col xs={4} md={4}>
                   <FieldGroup
                     id="formControlsText"
                     type="text"
-                    label="Time"
-                    placeholder="6:00"
+                    label="Date"
+                    placeholder="12/12"
                   />
                 </Col>
-                <Col xs={8} md={4} style={{verticalAlign: 'bottom'}}>
-                  <Button>AM</Button>
-                  <Button>PM</Button>
-                  <Button>24HR</Button>
+                <Col xs={6} md={8}>
+                  <Col xs={4} md={8}>
+                    <FieldGroup
+                      id="formControlsText"
+                      type="text"
+                      label="Time"
+                      placeholder="6:00"
+                    />
+                  </Col>
+                  <Col xs={8} md={4} >
+                    <label className="control-label">&nbsp;</label>
+                    <ButtonGroup bsSize="small" style={{verticalAlign: 'baseline'}}>
+                      <Button>AM</Button>
+                      <Button>PM</Button>
+                      <Button>24HR</Button>
+                    </ButtonGroup>
+                  </Col>
                 </Col>
               </Col>
+
+              </Row>
+              <Row className="show-grid">
+              <Col xs={12}>
+                <h3>Any Allergies?</h3>
+                <Col xs={4} md={3}>
+                  <FormGroup>
+                    <ControlLabel>Known Allergies</ControlLabel>
+                    <FormControl.Static>Tuna, Beans, Tomato</FormControl.Static>
+                  </FormGroup>
+                </Col>
+                <Col xs={8} md={9}>
+                  <label className="control-label">Additional Allergies</label>
+                  <TagsInput
+                    value={[]}
+                    onChange={this.handleChange}
+                    onlyUnique
+                    addOnBlur
+                  />
+                </Col>
+              </Col>
+              </Row>
+              <Row className="show-grid">
+                <Col xs={10} />
+                <Col xs={2}>
+                  <Button type="submit" onClick={this.ready}>Ready!</Button>
+                </Col>
+              </Row>
             </form>
           </Col>
+
+          <Recipes stuff={this.state.recipeList} />
+          {/* {(this.state.recipeList)} */}
         </Row>
       </Grid>
-
-      <Button type="submit" onClick={this.submit}>Submit</Button>
     </div>
   )
 }
