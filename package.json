@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SarahD/ReadyRecipe/issues"
   },
-  "homepage": "https://github.com/SarahD/ReadyRecipe#readme"
+  "homepage": "https://github.com/SarahD/ReadyRecipe#readme",
+  "dependencies": {
+    "react": "^16.2.0"
+  }
 }
