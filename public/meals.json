@@ -1,0 +1,39 @@
+{
+  "meals": [
+    {
+      "id": 49993,
+      "title": "Cream Cheese Banana Nut Bread",
+      "readyInMinutes": 90,
+      "image": "cream-cheese-banana-nut-bread-2-49993.jpg",
+      "imageUrls": [
+        "cream-cheese-banana-nut-bread-2-49993.jpg",
+        "cream_cheese_banana_nut_bread-49993.jpg"
+      ]
+    },
+    {
+      "id": 537176,
+      "title": "Leftover Rice Casserole",
+      "readyInMinutes": 45,
+      "image": "leftover-rice-casserole-537176.jpg",
+      "imageUrls": [
+        "leftover-rice-casserole-537176.jpg"
+      ]
+    },
+    {
+      "id": 116679,
+      "title": "Leek & Cheese Pie",
+      "readyInMinutes": 75,
+      "image": "leek-amp-cheese-pie-2-116679.jpg",
+      "imageUrls": [
+        "leek-amp-cheese-pie-2-116679.jpg",
+        "leek_amp_cheese_pie-116679.jpg"
+      ]
+    }
+  ],
+  "nutrients": {
+    "calories": 1988,
+    "protein": 55.64,
+    "fat": 121.19,
+    "carbohydrates": 177.96
+  }
+}
